@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json bun.lock* ./
 
 # Устанавливаем зависимости
-RUN bun install --frozen-lockfile --production
+RUN bun install --production
 
 # Копируем исходный код
 COPY . .
