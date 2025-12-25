@@ -7,7 +7,7 @@ import { sendApplicationMessage, sendResumeDocument } from '../features/telegram
 import { saveUpload, safeFilename } from '../infra/storage'
 
 export function registerApplicationRoutes(app: Elysia) {
-  app.post('/api/v1/applications', async ({ request, set, headers }) => {
+  return app.post('/api/v1/applications', async ({ request, set, headers }) => {
     // защита
     assertSharedSecret(request.headers)
     rateLimit(headers['x-forwarded-for']?.toString() || 'local')

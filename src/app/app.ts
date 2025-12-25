@@ -6,7 +6,7 @@ import { registerHealthRoutes } from '../routes/health.routes'
 import { registerApplicationRoutes } from '../routes/applications.routes'
 
 export function buildApp() {
-  const app = new Elysia()
+  let app = new Elysia()
     .use(corsPlugin)
     .onError(({ code, error, set, request }) => {
       const httpErr = toHttpError(error)
@@ -20,8 +20,8 @@ export function buildApp() {
       }
     })
 
-  registerHealthRoutes(app)
-  registerApplicationRoutes(app)
+  app = registerHealthRoutes(app)
+  app = registerApplicationRoutes(app)
 
   return app
 }
