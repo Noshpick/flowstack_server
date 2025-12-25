@@ -8,8 +8,11 @@ export const corsPlugin = cors({
   origin: ENV.ALLOWED_ORIGINS === '*'
     ? true
     : ENV.ALLOWED_ORIGINS.split(',').map(x => x.trim()),
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'x-shared-secret']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'x-shared-secret', 'Authorization'],
+  credentials: true,
+  exposedHeaders: ['Content-Type'],
+  maxAge: 86400 // 24 hours
 })
 
 // простая проверка общего секрета
